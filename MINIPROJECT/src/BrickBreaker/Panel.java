@@ -2,9 +2,13 @@ package BrickBreaker;
 import javax.swing.Timer;
 import javax.swing.JPanel;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.Color;
 
-public class Panel extends JPanel {
+public class Panel extends JPanel implements ActionListener,KeyListener{
 	 private boolean play=false;
 	    private int score=0;
 	    private int totalbricks=28;
@@ -33,5 +37,52 @@ public class Panel extends JPanel {
 	        g.setColor(Color.cyan);
 	        g.fillOval(ballXposition,ballYposition,40,40);
 	    }
+	    public Panel() {
+	    	addKeyListener(this);
+	    	setFocusable(true);
+	    	setFocusTraversalKeysEnabled(true);
+	    	timer=new Timer(delay,this);
+	    	timer.start();
+	    }
+
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+        private void MoveLeft() {
+        	playerX=playerX-20;
+        }
+        private void MoveRight() {
+        	playerX=playerX+20;
+        }
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			if(e.getKeyCode()==KeyEvent.VK_LEFT) {
+				MoveLeft();
+			}
+			if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
+				MoveRight();
+			}
+			
+				
+			
+		}
+
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 
 }
