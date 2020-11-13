@@ -1,12 +1,13 @@
 package BrickBreaker;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.applet.Applet;
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
 public class Panel extends JPanel implements ActionListener,KeyListener {
@@ -20,8 +21,7 @@ public class Panel extends JPanel implements ActionListener,KeyListener {
 	    private int ballXdirection=-1;
 	    private int ballYdirection=-2;
 	    private int playerX=350;
-	    
-	    
+	    private BrickGenerator brick;
 	  
 	    public void paint(Graphics g){
 	    	super.paint(g);
@@ -41,8 +41,10 @@ public class Panel extends JPanel implements ActionListener,KeyListener {
 
 	        //ball
 	        g.setColor(Color.cyan);
-	        g.fillOval(ballXposition,ballYposition,40,40);
+	        g.fillOval(ballXposition,ballYposition,30,30);
 	       
+	        //bricks
+	        brick.draw((Graphics2D)g);
 	    }
 
 	    public Panel() {
@@ -51,6 +53,7 @@ public class Panel extends JPanel implements ActionListener,KeyListener {
 	    	setFocusTraversalKeysEnabled(true);
 	    	timer=new Timer(delay,this);
 	    	timer.start();
+	    	brick=new BrickGenerator(4,8);
 	    }
 
 		@Override
@@ -104,13 +107,13 @@ public class Panel extends JPanel implements ActionListener,KeyListener {
 					if(ballXposition<=0){
 						ballXdirection=-ballXdirection;
 						}
-					if(ballXposition>=670) {
+					if(ballXposition>=752) {
 						ballXdirection=-ballXdirection;
 					}
 					if(ballYposition<=0){
 						ballYdirection=-ballYdirection;
 						}
-					Rectangle ball=new Rectangle(ballXposition,ballYposition,40,40);
+					Rectangle ball=new Rectangle(ballXposition,ballYposition,30,30);
 					Rectangle paddle=new Rectangle(playerX,550,200,8);
 					
 					if(ball.intersects(paddle)) {
