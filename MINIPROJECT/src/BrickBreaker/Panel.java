@@ -1,6 +1,7 @@
 package BrickBreaker;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -101,9 +102,21 @@ public class Panel extends JPanel implements ActionListener,KeyListener {
 				if(play) {
 
 					if(ballXposition<=0){
-						ballXdirection=-ballXdirection;}
+						ballXdirection=-ballXdirection;
+						}
+					if(ballXposition>=670) {
+						ballXdirection=-ballXdirection;
+					}
 					if(ballYposition<=0){
-						ballYdirection=-ballYdirection;}
+						ballYdirection=-ballYdirection;
+						}
+					Rectangle ball=new Rectangle(ballXposition,ballYposition,40,40);
+					Rectangle paddle=new Rectangle(playerX,550,200,8);
+					
+					if(ball.intersects(paddle)) {
+						ballYdirection=-ballYdirection;
+					}
+					
 					ballXposition+=ballXdirection;
 					ballYposition+=ballYdirection;}
 				repaint();
