@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.applet.Applet;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 public class Panel extends JPanel implements ActionListener,KeyListener {
@@ -23,20 +23,25 @@ public class Panel extends JPanel implements ActionListener,KeyListener {
 	    
 	  
 	    public void paint(Graphics g){
+	    	super.paint(g);
 	        //darkgray canvas
 	        g.setColor(Color.darkGray);
 	        g.fillRect(1,1,792,692);
+
 	        //border
 	        g.setColor(Color.magenta);
 	        g.fillRect(0,0,792,3);
-	        g.fillRect(0,0,3,692);
-	        g.fillRect(791,0,3,692);
+	        g.fillRect(0,3,3,692);
+	        g.fillRect(791,3,3,692);
+
 	        //paddle
 	        g.setColor(Color.green);
 	        g.fillRect(playerX,550,200,8);
+
 	        //ball
 	        g.setColor(Color.cyan);
 	        g.fillOval(ballXposition,ballYposition,40,40);
+	       
 	    }
 
 	    public Panel() {
