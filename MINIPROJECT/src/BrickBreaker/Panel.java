@@ -41,7 +41,7 @@ public class Panel extends JPanel implements ActionListener,KeyListener {
 
 	        //ball
 	        g.setColor(Color.cyan);
-	        g.fillOval(ballXposition,ballYposition,30,30);
+	        g.fillOval(ballXposition,ballYposition,20,20);
 	       
 	        //bricks
 	        brick.draw((Graphics2D)g);
@@ -113,11 +113,37 @@ public class Panel extends JPanel implements ActionListener,KeyListener {
 					if(ballYposition<=0){
 						ballYdirection=-ballYdirection;
 						}
-					Rectangle ball=new Rectangle(ballXposition,ballYposition,30,30);
+					Rectangle ball=new Rectangle(ballXposition,ballYposition,20,20);
 					Rectangle paddle=new Rectangle(playerX,550,200,8);
 					
 					if(ball.intersects(paddle)) {
 						ballYdirection=-ballYdirection;
+					}
+					
+					A:for(int i=0;i<brick.map.length;i++) {
+						for(int j=0;j<brick.map[0].length;j++) {
+							if(brick.map[i][j]>0) {
+								int width=brick.BrickWidth;
+								int height=brick.BrickHeight;
+								int brickXposition=100+j*width;
+								int brickYposition=20+i*height;
+								
+								Rectangle brickRect=new Rectangle(brickXposition,brickYposition,width,height);
+								
+								if(ball.intersects(brickRect)) {
+									brick.setBrick(0,i,j);
+									totalbricks--;
+									
+									if(ballXposition+19<=brickXposition || ballXposition+1>=brickXposition+width) {
+										ballXdirection=-ballXdirection;
+									}
+									else {
+										ballYdirection=-ballYdirection;
+									}
+									break A;
+								}
+							}
+						}
 					}
 					
 					ballXposition+=ballXdirection;
