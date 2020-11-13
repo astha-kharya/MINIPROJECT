@@ -1,14 +1,14 @@
 package BrickBreaker;
-import javax.swing.Timer;
-import javax.swing.JPanel;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.Color;
 
-public class Panel extends JPanel implements ActionListener,KeyListener{
+import javax.swing.JPanel;
+import javax.swing.Timer;
+public class Panel extends JPanel implements ActionListener,KeyListener {
 	 private boolean play=false;
 	    private int score=0;
 	    private int totalbricks=28;
@@ -19,10 +19,11 @@ public class Panel extends JPanel implements ActionListener,KeyListener{
 	    private int ballXdirection=-1;
 	    private int ballYdirection=-2;
 	    private int playerX=350;
-
-
+	    
+	    
+	  
 	    public void paint(Graphics g){
-	        //daekgray canvas
+	        //darkgray canvas
 	        g.setColor(Color.darkGray);
 	        g.fillRect(1,1,792,692);
 	        //border
@@ -37,6 +38,7 @@ public class Panel extends JPanel implements ActionListener,KeyListener{
 	        g.setColor(Color.cyan);
 	        g.fillOval(ballXposition,ballYposition,40,40);
 	    }
+
 	    public Panel() {
 	    	addKeyListener(this);
 	    	setFocusable(true);
@@ -45,29 +47,36 @@ public class Panel extends JPanel implements ActionListener,KeyListener{
 	    	timer.start();
 	    }
 
-
 		@Override
 		public void keyTyped(KeyEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
-        private void MoveLeft() {
-        	playerX=playerX-20;
-        }
-        private void MoveRight() {
-        	playerX=playerX+20;
-        }
 
+		 private void MoveLeft() {
+			    play = true;
+	        	playerX=playerX-20;
+	        }
+	        private void MoveRight() {
+	        	play = true;
+	        	playerX=playerX+20;
+	        }
 		@Override
 		public void keyPressed(KeyEvent e) {
+			// TODO Auto-generated method stub
 			if(e.getKeyCode()==KeyEvent.VK_LEFT) {
-				MoveLeft();
+				if(playerX<=0){
+					playerX=0;}
+				else{
+				MoveLeft();}
 			}
 			if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
-				MoveRight();
+				if(playerX>=600){
+					playerX=600;}
+				else{
+				MoveRight();}
 			}
-			
-				
+			repaint();
 			
 		}
 
@@ -82,7 +91,17 @@ public class Panel extends JPanel implements ActionListener,KeyListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			timer.start();
+			repaint();
+				if(play) {
+
+					if(ballXposition<=0){
+						ballXdirection=-ballXdirection;}
+					if(ballYposition<=0){
+						ballYdirection=-ballYdirection;}
+					ballXposition+=ballXdirection;
+					ballYposition+=ballYdirection;}
+				repaint();
 			
 		}
-
 }
