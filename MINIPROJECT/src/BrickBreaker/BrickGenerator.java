@@ -27,11 +27,11 @@ public class BrickGenerator {
     		for(int j=0;j<map[0].length;j++) {
     			if(map[i][j]>0) {
     				g.setColor(Color.gray);
-    				g.fillRect(j*BrickWidth+100,i*BrickHeight+20,BrickWidth,BrickHeight);
+    				g.fillRect(j*BrickWidth+100,i*BrickHeight+30,BrickWidth,BrickHeight);
     				
     				g.setColor(Color.darkGray);
     				g.setStroke(new BasicStroke(3));
-    				g.drawRect(j*BrickWidth+100,i*BrickHeight+20,BrickWidth,BrickHeight);
+    				g.drawRect(j*BrickWidth+100,i*BrickHeight+30,BrickWidth,BrickHeight);
     			}
     		}
     	}
