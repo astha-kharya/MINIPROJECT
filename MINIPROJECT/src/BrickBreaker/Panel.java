@@ -79,7 +79,7 @@ public class Panel extends JPanel implements ActionListener,KeyListener {
 	        	
 	        	g.setColor(Color.PINK);
 	        	g.setFont(new Font("italic",Font.BOLD,30));
-	        	g.drawString("PRESS ENTER TO RESTART!!!",200,350);
+	        	g.drawString("PRESS SPACEBAR TO RESTART!!!",200,350);
 	        }
 	    }
 
@@ -125,6 +125,19 @@ public class Panel extends JPanel implements ActionListener,KeyListener {
 				if(!play) {
 					score=0;
 					totalbricks=32;
+					ballXposition=120;
+					ballYposition=350;
+				    ballXdirection=-1;
+				    ballYdirection=-2;
+				    playerX=350;
+				    brick=new BrickGenerator(4,8);
+				}
+				
+			}
+			if(e.getKeyCode()==KeyEvent.VK_SPACE) {
+				if(!play) {
+					score=0;
+					totalbricks=40;
 					ballXposition=120;
 					ballYposition=350;
 				    ballXdirection=-1;
