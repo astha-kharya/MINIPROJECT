@@ -14,7 +14,7 @@ import javax.swing.Timer;
 public class Panel extends JPanel implements ActionListener,KeyListener {
 	 private boolean play=false;
 	    private int score=0;
-	    private int totalbricks=28;
+	    private int totalbricks=32;
 	    private Timer timer;
 	    private int delay=8;
 	    private int ballXposition=120;
@@ -124,7 +124,7 @@ public class Panel extends JPanel implements ActionListener,KeyListener {
 			if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 				if(!play) {
 					score=0;
-					totalbricks=28;
+					totalbricks=32;
 					ballXposition=120;
 					ballYposition=350;
 				    ballXdirection=-1;
